@@ -1,4 +1,4 @@
-# Mood Visualizer — WebGPU Hackathon Project
+# Mood Visualizer
 
 A web app that transforms text descriptions of emotions into living, GPU-accelerated generative art using the raw WebGPU API.
 
