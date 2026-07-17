@@ -32,7 +32,50 @@ with raw WebGPU.
 
 ---
 
-## Phase 2 — Voice Input 🔲
+## Phase 2 — Color Themes & Personalization 🔲
+
+**Goal:** Let users define their own color-emotion associations so the
+visualization feels personally meaningful.
+
+**Why this is Phase 2:** Color-mood mapping is deeply personal. The default
+Inside Out palette assumes blue = sad and yellow = happy, but many people have
+completely different associations (e.g., pink/coral/mint = happiness, black =
+sadness, red = anxiety). Without personalization, the visualization may feel
+"wrong" to a large portion of users. This is crucial to the core experience.
+
+**Approach:**
+- **Preset themes** — curated color palettes users can pick from:
+  - *Inside Out* (default) — warm yellows for joy, cool blues for sadness
+  - *Pastel Dreams* — pinks, corals, and mints for positive; muted darks for
+    negative
+  - *Ocean* — teals and aquas for calm; deep navy for sadness; warm sand for joy
+  - *Monochrome* — grayscale intensity; shape and motion carry the mood
+  - *Neon* — high-saturation electric colors across the spectrum
+- **Custom theme builder** — two modes:
+  - *Quiz mode:* Ask 4–6 questions ("Pick a color that feels happy," "Pick a
+    color that feels anxious," etc.) and interpolate a full hue curve from the
+    answers
+  - *Direct mode:* Color pickers for each mood anchor (positive, negative,
+    calm, energetic) with a live preview on the canvas
+- **Storage:** Save the active theme and any custom palettes to `localStorage`
+- **Implementation:** The theme overrides the hue/saturation/brightness ranges
+  in `mapToVisual.ts`. The mapper reads from a `ThemeConfig` object instead of
+  hardcoded constants.
+
+**Design notes:**
+- Theme selection UI: a settings gear icon in the overlay that opens a panel
+- The quiz should feel playful, not clinical — use the canvas itself as the
+  background while answering
+- Custom themes should be exportable/importable (JSON) so users can share them
+- Keep the default experience unchanged for users who skip customization
+
+**Hook point:** `src/mood/mapToVisual.ts` — extract the hardcoded hue/saturation
+ranges into a `ThemeConfig` interface. The mapper function takes the config as a
+parameter (or reads from a module-level ref).
+
+---
+
+## Phase 3 — Voice Input 🔲
 
 **Goal:** Let users speak their mood instead of typing.
 
@@ -53,7 +96,7 @@ button and wire speech events to the existing `onMoodChange` callback.
 
 ---
 
-## Phase 3 — ML-Powered Sentiment Analysis 🔲
+## Phase 4 — ML-Powered Sentiment Analysis 🔲
 
 **Goal:** Replace the keyword lexicon with a real language understanding model
 so the app handles full sentences, nuance, and mixed emotions.
@@ -75,7 +118,7 @@ The function signature (`string → MoodParams`) is the contract.
 
 ---
 
-## Phase 4 — GPU Compute Particle System 🔲
+## Phase 5 — GPU Compute Particle System 🔲
 
 **Goal:** Replace or augment the raymarched shader with a compute-shader-driven
 particle system for richer, more dynamic visuals.
@@ -97,7 +140,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 5 — Polish & Advanced Features 🔲
+## Phase 6 — Polish & Advanced Features 🔲
 
 **Goal:** Production-quality visuals and developer tooling.
 
@@ -114,7 +157,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 6 — Mood Journal & Shareable Snapshots 🔲
+## Phase 7 — Mood Journal & Shareable Snapshots 🔲
 
 **Goal:** Let users save, revisit, and share their mood visualizations.
 
@@ -133,7 +176,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 7 — Ambient Soundscape 🔲
+## Phase 8 — Ambient Soundscape 🔲
 
 **Goal:** Generate a real-time audio layer that matches the mood visualization.
 
@@ -153,7 +196,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 8 — Alternative Input Modes 🔲
+## Phase 9 — Alternative Input Modes 🔲
 
 **Goal:** Expand how users can express their mood beyond text and voice.
 
@@ -172,7 +215,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 9 — Accessibility 🔲
+## Phase 10 — Accessibility 🔲
 
 **Goal:** Make the mood visualization experience inclusive for all users.
 
@@ -191,7 +234,7 @@ particle system for richer, more dynamic visuals.
 
 ---
 
-## Phase 10 — Multi-User Sync 🔲
+## Phase 11 — Multi-User Sync 🔲
 
 **Goal:** Let multiple people share a live mood canvas in real time.
 
