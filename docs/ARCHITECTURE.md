@@ -91,7 +91,7 @@ A fullscreen **raymarched fragment shader** that renders the mood as an organic
 - **Lighting:** Directional diffuse + specular (Phong, power 32) + Fresnel rim.
 - **Background:** Dual-hue gradient (complementary +180° and +240°) with FBM
   noise and soft vignette. Base lightness is high (0.55+) so the background
-  is always vibrant, never dark — inspired by the Inside Out color palette.
+  is always vibrant, never dark — the palette is intentionally bright and warm.
 - **Post:** Reinhard tone mapping + gamma correction.
 
 ### `src/ui/controls.ts` — UI Wiring
@@ -105,7 +105,7 @@ WebGPU fallback message.
 Fullscreen canvas with a purple-tinted glassmorphic UI overlay at the bottom:
 text input, golden visualize button, and 6 preset mood buttons (calm, anxious,
 joyful, melancholy, angry, dreamy). Each preset button is styled with a distinct
-color inspired by the Inside Out movie palette (e.g. Joy = yellow, Sadness = blue,
+color inspired by the default vibrant palette (e.g. Joy = yellow, Sadness = blue,
 Anger = red). Body background is a deep purple gradient. All styles are inline —
 no CSS framework.
 

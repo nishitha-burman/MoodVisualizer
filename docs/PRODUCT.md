@@ -30,7 +30,7 @@ layered — so the visuals reflect gradients of feeling, not just "happy" or "sa
 
 ### Always Bright, Never Dark
 
-The visual palette is inspired by **Pixar's Inside Out** — vibrant, playful, and
+The visual palette is vibrant, playful, and
 welcoming. Even negative emotions (sadness, anger) render with rich, saturated
 color rather than darkness. The background is always colorful. Brightness and
 saturation never drop below a lively minimum.
@@ -70,7 +70,7 @@ surface texture all respond to how intense and complex your mood is.
 
 ## UI Design
 
-### Color Scheme — Inside Out Inspired
+### Color Scheme — Vibrant & Warm
 
 - **Background:** Deep purple gradient — evokes the "headquarters" feeling
 - **Text input:** Purple-tinted glass with a warm golden focus glow
@@ -102,7 +102,7 @@ Mood Visualizer requires a modern browser with WebGPU support:
 
 | Decision | Why |
 |----------|-----|
-| Inside Out color palette | Bright & welcoming; emotion-as-color aligns with the movie's metaphor; avoids the "dark = emotional depth" cliché |
+| Vibrant color palette | Bright & welcoming; emotion-as-color is intuitive; avoids the "dark = emotional depth" cliché |
 | Per-preset character colors | Instant visual association between mood labels and colors; makes the button row feel playful |
 | Always-vibrant visuals | Even "negative" moods should feel visually rich, not dreary — the app is about exploration, not judgment |
 | ~2-second smooth transitions | Abrupt snaps feel jarring; slow morphs make mood shifts feel alive and intentional |

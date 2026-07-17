@@ -38,14 +38,14 @@ with raw WebGPU.
 visualization feels personally meaningful.
 
 **Why this is Phase 2:** Color-mood mapping is deeply personal. The default
-Inside Out palette assumes blue = sad and yellow = happy, but many people have
+the default palette assumes blue = sad and yellow = happy, but many people have
 completely different associations (e.g., pink/coral/mint = happiness, black =
 sadness, red = anxiety). Without personalization, the visualization may feel
 "wrong" to a large portion of users. This is crucial to the core experience.
 
 **Approach:**
 - **Preset themes** — curated color palettes users can pick from:
-  - *Inside Out* (default) — warm yellows for joy, cool blues for sadness
+  - *Classic* (default) — warm yellows for joy, cool blues for sadness
   - *Pastel Dreams* — pinks, corals, and mints for positive; muted darks for
     negative
   - *Ocean* — teals and aquas for calm; deep navy for sadness; warm sand for joy
@@ -272,4 +272,4 @@ art, shared experiences with friends.
 | Raymarched metaballs for Phase 1 | Organic, mood-appropriate aesthetic; demonstrates SDF techniques |
 | Smooth lerp transitions (not snapping) | Mood changes feel alive and intentional |
 | Client-side only | Keeps it simple; no auth, no servers, instant deployment |
-| Inside Out-inspired color palette | Bright, fun, welcoming aesthetic; per-preset character colors; high shader background lightness floor so visuals are never dark/gray |
+| Vibrant default color palette | Bright, fun, welcoming aesthetic; per-preset character colors; high shader background lightness floor so visuals are never dark/gray |

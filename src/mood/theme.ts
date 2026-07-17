@@ -34,7 +34,7 @@ export const SWATCH_OPTIONS = [
   { label: "Deep Purple", hue: 300, hex: "#9C27B0" },
 ] as const;
 
-/** Default theme: Inside Out inspired palette */
+/** Default theme: vibrant warm palette */
 export const DEFAULT_THEME: ThemeConfig = {
   happy: 85,     // yellow (Joy)
   sad: 250,      // blue (Sadness)
