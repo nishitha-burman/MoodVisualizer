@@ -147,11 +147,136 @@
         color: rgba(220, 180, 255, 0.7);
         line-height: 1.5;
       }
+
+      /* Quiz overlay */
+      #quiz-overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        background: rgba(10, 2, 25, 0.75);
+        backdrop-filter: blur(16px);
+        animation: quiz-fade-in 0.4s ease-out;
+      }
+      #quiz-overlay.quiz-exit {
+        animation: quiz-fade-out 0.4s ease-in forwards;
+      }
+      @keyframes quiz-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes quiz-fade-out {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      #quiz-question {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #f0e6ff;
+        max-width: 400px;
+      }
+      #quiz-swatches {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+        max-width: 360px;
+      }
+      .quiz-swatch {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .quiz-swatch:hover {
+        transform: scale(1.15);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      .quiz-swatch.selected {
+        transform: scale(1.2);
+        border-color: #fff;
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+      }
+      #quiz-progress {
+        display: flex;
+        gap: 8px;
+      }
+      .quiz-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: background 0.3s, transform 0.3s;
+      }
+      .quiz-dot.active {
+        background: #f5c542;
+        transform: scale(1.3);
+      }
+      .quiz-dot.completed {
+        background: rgba(245, 197, 66, 0.5);
+      }
+      #quiz-skip {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(220, 180, 255, 0.6);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+      }
+      #quiz-skip:hover {
+        color: #f0e6ff;
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Settings gear */
+      #settings-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 10;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 200, 255, 0.2);
+        background: rgba(30, 10, 60, 0.6);
+        backdrop-filter: blur(8px);
+        color: rgba(220, 180, 255, 0.7);
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s, border-color 0.2s, transform 0.3s;
+      }
+      #settings-btn:hover {
+        color: #f0e6ff;
+        border-color: rgba(255, 200, 255, 0.5);
+        transform: rotate(45deg);
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <canvas id="gpu-canvas"></canvas>
+      <button id="settings-btn" title="Color theme settings">⚙</button>
+      <div id="quiz-overlay">
+        <p id="quiz-question"></p>
+        <div id="quiz-swatches"></div>
+        <div id="quiz-progress"></div>
+        <button id="quiz-skip">Skip — use defaults</button>
+      </div>
       <div id="ui-overlay">
         <div id="input-row">
           <input id="mood-input" type="text" placeholder="How are you feeling?" autocomplete="off" />

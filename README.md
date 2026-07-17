@@ -68,10 +68,16 @@ src/
 ## Roadmap
 
 - [x] Phase 1 — Text-driven mood visualization (keyword lexicon + raymarched shader)
-- [ ] Phase 2 — Voice input (Web Speech API → same pipeline)
-- [ ] Phase 3 — Real sentiment analysis (Transformers.js / WebNN)
-- [ ] Phase 4 — GPU compute particles (curl-noise flow field, 50k–500k particles)
-- [ ] Phase 5 — Post-processing, perf overlay, video capture
+- [x] Phase 2 — Color themes & personalization (quiz-based color mapping)
+- [ ] Phase 3 — Voice input (Web Speech API → same pipeline)
+- [ ] Phase 4 — Real sentiment analysis (Transformers.js / WebNN)
+- [ ] Phase 5 — GPU compute particles (curl-noise flow field, 50k–500k particles)
+- [ ] Phase 6 — Post-processing, perf overlay, video capture
+- [ ] Phase 7 — Mood journal & shareable snapshots
+- [ ] Phase 8 — Ambient soundscape (Web Audio API)
+- [ ] Phase 9 — Alternative input modes (webcam, touch gestures)
+- [ ] Phase 10 — Accessibility (screen reader, reduced motion)
+- [ ] Phase 11 — Multi-user sync (WebRTC)
 
 ## Browser Requirements
 

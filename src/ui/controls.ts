@@ -3,7 +3,7 @@ export type MoodChangeCallback = (text: string) => void;
 /**
  * Wire up the UI controls: text input, visualize button, and preset buttons.
  *
- * TODO Phase 2: Add microphone button to capture Web Speech API input
+ * TODO Phase 3: Add microphone button to capture Web Speech API input
  * and feed transcript to the same callback.
  */
 export function initUI(onMoodChange: MoodChangeCallback): void {
