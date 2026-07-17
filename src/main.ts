@@ -2,7 +2,7 @@ import { MoodRenderer } from "./gpu/renderer";
 import { analyzeText } from "./mood/analyzeText";
 import { mapToVisual, setActiveTheme } from "./mood/mapToVisual";
 import { loadTheme, ThemeConfig } from "./mood/theme";
-import { initUI, showFallback } from "./ui/controls";
+import { initUI, showFallback, applyThemeToPresets } from "./ui/controls";
 import { showQuiz } from "./ui/quiz";
 
 /**
@@ -28,6 +28,7 @@ async function main() {
 
   function activateApp(theme: ThemeConfig) {
     setActiveTheme(theme);
+    applyThemeToPresets(theme);
     // Wire UI: text input triggers the full pipeline
     initUI((text: string) => {
       const mood = analyzeText(text);
@@ -66,6 +67,7 @@ async function main() {
     showQuiz(
       (theme) => {
         setActiveTheme(theme);
+        applyThemeToPresets(theme);
       },
       (hue) => {
         renderer.setTarget({

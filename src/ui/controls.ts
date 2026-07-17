@@ -1,3 +1,5 @@
+import { ThemeConfig } from "../mood/theme";
+
 export type MoodChangeCallback = (text: string) => void;
 
 /**
@@ -27,6 +29,40 @@ export function initUI(onMoodChange: MoodChangeCallback): void {
       input.value = mood;
       onMoodChange(mood);
     });
+  });
+}
+
+/** Map preset mood names to ThemeConfig keys. */
+const PRESET_TO_THEME: Record<string, keyof ThemeConfig> = {
+  calm: "calm",
+  anxious: "anxious",
+  joyful: "happy",
+  melancholy: "sad",
+  angry: "angry",
+  dreamy: "calm", // dreamy borrows from calm hue
+};
+
+/**
+ * Update preset button colors to match the user's theme.
+ * Converts oklch hue to an HSL color for the button gradient.
+ */
+export function applyThemeToPresets(theme: ThemeConfig): void {
+  const presets = document.querySelectorAll<HTMLButtonElement>(".preset-btn");
+  presets.forEach((preset) => {
+    const mood = preset.dataset.mood!;
+    const themeKey = PRESET_TO_THEME[mood];
+    if (!themeKey) return;
+
+    const hue = theme[themeKey];
+    // Convert oklch-ish hue to HSL hue (approximate — close enough for buttons)
+    const hslHue = hue;
+    const light = `hsl(${hslHue}, 70%, 60%)`;
+    const dark = `hsl(${hslHue}, 75%, 45%)`;
+    const textColor = hslHue > 40 && hslHue < 200 ? "#1a0533" : "#fff";
+
+    preset.style.background = `linear-gradient(135deg, ${light}, ${dark})`;
+    preset.style.color = textColor;
+    preset.style.boxShadow = `0 2px 8px hsla(${hslHue}, 70%, 50%, 0.35)`;
   });
 }
 
