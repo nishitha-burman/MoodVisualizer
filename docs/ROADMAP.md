@@ -127,3 +127,4 @@ particle system for richer, more dynamic visuals.
 | Raymarched metaballs for Phase 1 | Organic, mood-appropriate aesthetic; demonstrates SDF techniques |
 | Smooth lerp transitions (not snapping) | Mood changes feel alive and intentional |
 | Client-side only | Keeps it simple; no auth, no servers, instant deployment |
+| Inside Out-inspired color palette | Bright, fun, welcoming aesthetic; per-preset character colors; high shader background lightness floor so visuals are never dark/gray |

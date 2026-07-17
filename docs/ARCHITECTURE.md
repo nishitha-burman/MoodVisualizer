@@ -42,8 +42,8 @@ range:
 | Mood Dimension | Visual Property                   | Range              |
 |---------------|-----------------------------------|--------------------|
 | `valence`     | Hue (oklch degrees)               | 220° cool → 50° warm (through 300° neutral) |
-| `valence`     | Brightness                        | 0.3 → 0.75         |
-| `intensity`   | Saturation                        | 0.3 → 0.9          |
+| `valence`     | Brightness                        | 0.45 → 0.8         |
+| `intensity`   | Saturation                        | 0.45 → 0.95        |
 | `arousal`     | Motion speed                      | 0.2 → 2.5          |
 | `arousal` + `complexity` | Turbulence              | 0.1 → 1.5 (70/30 blend) |
 | `intensity`   | Density                           | 0.3 → 1.0          |
@@ -89,7 +89,9 @@ A fullscreen **raymarched fragment shader** that renders the mood as an organic
   with a secondary hue shifted +60° for iridescence based on surface normal.
   Fresnel rim lighting adds a third hue shifted +120°.
 - **Lighting:** Directional diffuse + specular (Phong, power 32) + Fresnel rim.
-- **Background:** Subtle FBM noise + vignette in complementary hue.
+- **Background:** Dual-hue gradient (complementary +180° and +240°) with FBM
+  noise and soft vignette. Base lightness is high (0.55+) so the background
+  is always vibrant, never dark — inspired by the Inside Out color palette.
 - **Post:** Reinhard tone mapping + gamma correction.
 
 ### `src/ui/controls.ts` — UI Wiring
@@ -100,9 +102,12 @@ WebGPU fallback message.
 
 ### `index.html` — Layout & Styles
 
-Fullscreen canvas with a glassmorphic UI overlay at the bottom: text input,
-visualize button, and 6 preset mood buttons (calm, anxious, joyful, melancholy,
-angry, dreamy). All styles are inline — no CSS framework.
+Fullscreen canvas with a purple-tinted glassmorphic UI overlay at the bottom:
+text input, golden visualize button, and 6 preset mood buttons (calm, anxious,
+joyful, melancholy, angry, dreamy). Each preset button is styled with a distinct
+color inspired by the Inside Out movie palette (e.g. Joy = yellow, Sadness = blue,
+Anger = red). Body background is a deep purple gradient. All styles are inline —
+no CSS framework.
 
 ## GPU Uniform Buffer Layout (48 bytes)
 
