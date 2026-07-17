@@ -98,7 +98,17 @@
         transform: translateY(-2px);
         filter: brightness(1.15);
       }
-      /* Inside Out character colors for each preset */
+      /* Inside Out character colors for each preset (overridden dynamically by theme) */
+      .preset-btn[data-mood="happy"] {
+        background: linear-gradient(135deg, #ffe14d, #ffc107);
+        color: #3e2e00;
+        box-shadow: 0 2px 8px rgba(255, 193, 7, 0.35);
+      }
+      .preset-btn[data-mood="sad"] {
+        background: linear-gradient(135deg, #7986cb, #3f51b5);
+        color: #e8eaf6;
+        box-shadow: 0 2px 8px rgba(63, 81, 181, 0.3);
+      }
       .preset-btn[data-mood="calm"] {
         background: linear-gradient(135deg, #6ec6ff, #42a5f5);
         color: #0d1b3e;
@@ -109,25 +119,15 @@
         color: #3e1a00;
         box-shadow: 0 2px 8px rgba(245, 124, 0, 0.3);
       }
-      .preset-btn[data-mood="joyful"] {
-        background: linear-gradient(135deg, #ffe14d, #ffc107);
-        color: #3e2e00;
-        box-shadow: 0 2px 8px rgba(255, 193, 7, 0.35);
-      }
-      .preset-btn[data-mood="melancholy"] {
-        background: linear-gradient(135deg, #7986cb, #3f51b5);
-        color: #e8eaf6;
-        box-shadow: 0 2px 8px rgba(63, 81, 181, 0.3);
-      }
       .preset-btn[data-mood="angry"] {
         background: linear-gradient(135deg, #ef5350, #d32f2f);
         color: #fff;
         box-shadow: 0 2px 8px rgba(211, 47, 47, 0.35);
       }
-      .preset-btn[data-mood="dreamy"] {
-        background: linear-gradient(135deg, #ce93d8, #9c27b0);
-        color: #f3e5f5;
-        box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
+      .preset-btn[data-mood="confident"] {
+        background: linear-gradient(135deg, #f5c542, #e8a020);
+        color: #1a0533;
+        box-shadow: 0 2px 8px rgba(245, 197, 66, 0.3);
       }
       #fallback-msg {
         display: none;
@@ -283,12 +283,12 @@
           <button id="visualize-btn">Visualize</button>
         </div>
         <div id="presets">
+          <button class="preset-btn" data-mood="happy">happy</button>
+          <button class="preset-btn" data-mood="sad">sad</button>
           <button class="preset-btn" data-mood="calm">calm</button>
           <button class="preset-btn" data-mood="anxious">anxious</button>
-          <button class="preset-btn" data-mood="joyful">joyful</button>
-          <button class="preset-btn" data-mood="melancholy">melancholy</button>
           <button class="preset-btn" data-mood="angry">angry</button>
-          <button class="preset-btn" data-mood="dreamy">dreamy</button>
+          <button class="preset-btn" data-mood="confident">confident</button>
         </div>
       </div>
       <div id="fallback-msg">

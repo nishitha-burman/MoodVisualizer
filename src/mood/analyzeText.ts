@@ -33,6 +33,7 @@ const LEXICON: Record<string, LexiconEntry> = {
   cheerful: { valence: 0.75, arousal: 0.5, intensity: 0.6, complexity: 0.25 },
   grateful: { valence: 0.8, arousal: 0.3, intensity: 0.6, complexity: 0.2 },
   hopeful: { valence: 0.7, arousal: 0.4, intensity: 0.5, complexity: 0.2 },
+  confident: { valence: 0.8, arousal: 0.6, intensity: 0.8, complexity: 0.2 },
   playful: { valence: 0.7, arousal: 0.7, intensity: 0.6, complexity: 0.5 },
   energetic: { valence: 0.6, arousal: 0.9, intensity: 0.8, complexity: 0.4 },
 

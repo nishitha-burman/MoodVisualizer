@@ -34,12 +34,12 @@ export function initUI(onMoodChange: MoodChangeCallback): void {
 
 /** Map preset mood names to ThemeConfig keys. */
 const PRESET_TO_THEME: Record<string, keyof ThemeConfig> = {
+  happy: "happy",
+  sad: "sad",
   calm: "calm",
   anxious: "anxious",
-  joyful: "happy",
-  melancholy: "sad",
   angry: "angry",
-  dreamy: "calm", // dreamy borrows from calm hue
+  confident: "confident",
 };
 
 /**
