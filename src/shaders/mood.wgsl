@@ -216,11 +216,14 @@ fn fs_main(in: VsOut) -> @location(0) vec4f {
     // Glow / density factor
     color *= u.density * 0.5 + 0.7;
   } else {
-    // Background: subtle gradient with noise
-    let bg_noise = fbm(vec3f(uv * 2.0, u.time * u.speed * 0.1), 3) * 0.05;
-    let bg_base = oklch_to_rgb(u.brightness * 0.15, u.saturation * 0.03, u.hue + 180.0);
-    let vignette = 1.0 - length(uv) * 0.4;
-    color = bg_base * vignette + bg_noise;
+    // Background: vibrant gradient with noise (Inside Out-inspired)
+    let bg_noise = fbm(vec3f(uv * 2.0, u.time * u.speed * 0.1), 3) * 0.08;
+    let bg_base = oklch_to_rgb(u.brightness * 0.35 + 0.08, u.saturation * 0.08 + 0.02, u.hue + 180.0);
+    let bg_accent = oklch_to_rgb(u.brightness * 0.25 + 0.06, u.saturation * 0.06, u.hue + 240.0);
+    let gradient_t = in.uv.y * 0.6 + 0.2;
+    let bg_mixed = mix(bg_base, bg_accent, gradient_t);
+    let vignette = 1.0 - length(uv) * 0.3;
+    color = bg_mixed * vignette + bg_noise;
   }
 
   // Tone mapping (simple Reinhard)

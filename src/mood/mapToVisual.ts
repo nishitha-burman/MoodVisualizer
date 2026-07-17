@@ -16,11 +16,11 @@ export function mapToVisual(mood: MoodParams): VisualParams {
     ? lerp(300, 50, mood.valence)   // neutral→warm
     : lerp(300, 220, -mood.valence); // neutral→cool
 
-  // Brightness: positive moods are brighter
-  const brightness = lerp(0.3, 0.75, (mood.valence + 1) / 2);
+  // Brightness: positive moods are brighter (raised floor for fun/vibrant feel)
+  const brightness = lerp(0.45, 0.8, (mood.valence + 1) / 2);
 
-  // Saturation: higher intensity = more saturated
-  const saturation = lerp(0.3, 0.9, mood.intensity);
+  // Saturation: higher intensity = more saturated (raised floor)
+  const saturation = lerp(0.45, 0.95, mood.intensity);
 
   // Speed: driven by arousal
   const speed = lerp(0.2, 2.5, mood.arousal);
