@@ -27,7 +27,6 @@ export const SWATCH_OPTIONS = [
   { label: "Yellow", hue: 85, hex: "#F5C542" },
   { label: "Mint", hue: 155, hex: "#5EDBA6" },
   { label: "Teal", hue: 185, hex: "#4DD9D9" },
-  { label: "Sky Blue", hue: 220, hex: "#6EBBFF" },
   { label: "Lavender", hue: 280, hex: "#B388FF" },
   { label: "Pink", hue: 330, hex: "#FF6EB4" },
   { label: "Red", hue: 15, hex: "#EF5350" },
