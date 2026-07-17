@@ -33,6 +33,7 @@ export function showQuiz(
 
     // Clear and render swatches
     swatchGrid.innerHTML = "";
+    // Render curated swatches
     SWATCH_OPTIONS.forEach((swatch) => {
       const btn = document.createElement("button");
       btn.className = "quiz-swatch";
@@ -47,30 +48,75 @@ export function showQuiz(
       }
 
       btn.addEventListener("click", () => {
-        // Record answer
-        answers[question.key] = swatch.hue;
-
-        // Live preview
-        onPreview(swatch.hue);
-
-        // Brief visual feedback then advance
-        swatchGrid.querySelectorAll(".quiz-swatch").forEach((s) =>
-          s.classList.remove("selected"),
-        );
-        btn.classList.add("selected");
-
-        setTimeout(() => {
-          if (currentStep < QUIZ_QUESTIONS.length - 1) {
-            currentStep++;
-            renderStep();
-          } else {
-            finish();
-          }
-        }, 400);
+        selectColor(swatch.hue);
       });
 
       swatchGrid.appendChild(btn);
     });
+
+    // Add color wheel picker as last circle
+    const pickerBtn = document.createElement("button");
+    pickerBtn.className = "quiz-swatch quiz-swatch-picker";
+    pickerBtn.setAttribute("aria-label", "Pick custom color");
+    pickerBtn.title = "Pick your own color";
+
+    // Hidden native color input
+    const colorInput = document.createElement("input");
+    colorInput.type = "color";
+    colorInput.style.position = "absolute";
+    colorInput.style.opacity = "0";
+    colorInput.style.width = "0";
+    colorInput.style.height = "0";
+    colorInput.style.pointerEvents = "none";
+
+    pickerBtn.addEventListener("click", () => {
+      colorInput.click();
+    });
+
+    colorInput.addEventListener("input", (e) => {
+      const hex = (e.target as HTMLInputElement).value;
+      const hue = hexToHue(hex);
+      onPreview(hue);
+      // Show selection state
+      swatchGrid.querySelectorAll(".quiz-swatch").forEach((s) =>
+        s.classList.remove("selected"),
+      );
+      pickerBtn.classList.add("selected");
+      pickerBtn.style.borderColor = hex;
+    });
+
+    colorInput.addEventListener("change", (e) => {
+      const hex = (e.target as HTMLInputElement).value;
+      const hue = hexToHue(hex);
+      selectColor(hue);
+    });
+
+    pickerBtn.appendChild(colorInput);
+    swatchGrid.appendChild(pickerBtn);
+
+    function selectColor(hue: number) {
+      answers[question.key] = hue;
+      onPreview(hue);
+
+      swatchGrid.querySelectorAll(".quiz-swatch").forEach((s) =>
+        s.classList.remove("selected"),
+      );
+      // Find and highlight the matching swatch
+      const swatches = swatchGrid.querySelectorAll(".quiz-swatch");
+      swatches.forEach((s) => {
+        const bg = (s as HTMLElement).style.background;
+        if (bg) s.classList.remove("selected");
+      });
+
+      setTimeout(() => {
+        if (currentStep < QUIZ_QUESTIONS.length - 1) {
+          currentStep++;
+          renderStep();
+        } else {
+          finish();
+        }
+      }, 400);
+    }
   }
 
   function finish() {
@@ -112,4 +158,26 @@ export function showQuiz(
   // Show and start
   overlay.style.display = "flex";
   renderStep();
+}
+
+/** Convert a hex color (#rrggbb) to an approximate hue in degrees. */
+function hexToHue(hex: string): number {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+
+  if (delta === 0) return 0;
+
+  let hue: number;
+  if (max === r) hue = ((g - b) / delta) % 6;
+  else if (max === g) hue = (b - r) / delta + 2;
+  else hue = (r - g) / delta + 4;
+
+  hue = Math.round(hue * 60);
+  if (hue < 0) hue += 360;
+  return hue;
 }
