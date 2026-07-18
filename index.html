@@ -252,6 +252,20 @@
         border-color: rgba(255, 255, 255, 0.4);
       }
 
+      /* Version badge */
+      #version-badge {
+        position: absolute;
+        top: 20px;
+        right: 60px;
+        z-index: 10;
+        font-size: 11px;
+        color: rgba(220, 180, 255, 0.45);
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        pointer-events: none;
+        user-select: none;
+      }
+
       /* Settings gear */
       #settings-btn {
         position: absolute;
@@ -282,6 +296,7 @@
   <body>
     <div id="app">
       <canvas id="gpu-canvas"></canvas>
+      <span id="version-badge"></span>
       <button id="settings-btn" title="Color theme settings">⚙</button>
       <div id="quiz-overlay">
         <p id="quiz-question"></p>
