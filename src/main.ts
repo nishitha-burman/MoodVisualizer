@@ -4,6 +4,7 @@ import { mapToVisual, setActiveTheme } from "./mood/mapToVisual";
 import { loadTheme, ThemeConfig } from "./mood/theme";
 import { initUI, showFallback, applyThemeToPresets } from "./ui/controls";
 import { showQuiz } from "./ui/quiz";
+import { version } from "../package.json";
 
 /**
  * Application entry point.
@@ -12,6 +13,8 @@ import { showQuiz } from "./ui/quiz";
  */
 async function main() {
   const canvas = document.getElementById("gpu-canvas") as HTMLCanvasElement;
+  const versionBadge = document.getElementById("version-badge")!;
+  versionBadge.textContent = `v${version}`;
   const renderer = new MoodRenderer(canvas);
 
   const ok = await renderer.init();

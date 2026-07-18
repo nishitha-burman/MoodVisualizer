@@ -94,7 +94,9 @@ export class MoodRenderer {
   }
 
   private handleResize() {
-    const dpr = window.devicePixelRatio || 1;
+    // Cap DPR on mobile to reduce GPU workload (high-DPI phones can be 3×+)
+    const maxDpr = "ontouchstart" in window ? 1.5 : 2.5;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     this.canvas.width = Math.floor(this.canvas.clientWidth * dpr);
     this.canvas.height = Math.floor(this.canvas.clientHeight * dpr);
   }
