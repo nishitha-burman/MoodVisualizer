@@ -54,15 +54,16 @@ export function applyThemeToPresets(theme: ThemeConfig): void {
     if (!themeKey) return;
 
     const hue = theme[themeKey];
-    // Convert oklch-ish hue to HSL hue (approximate — close enough for buttons)
-    const hslHue = hue;
-    const light = `hsl(${hslHue}, 70%, 60%)`;
-    const dark = `hsl(${hslHue}, 75%, 45%)`;
-    const textColor = hslHue > 40 && hslHue < 200 ? "#1a0533" : "#fff";
+    // Use oklch() directly since these are oklch hues (WebGPU-capable browsers support it)
+    const light = `oklch(0.72 0.15 ${hue})`;
+    const dark = `oklch(0.55 0.18 ${hue})`;
+    const shadow = `oklch(0.6 0.16 ${hue} / 0.35)`;
+    // Light text for dark hues (blues/purples), dark text for bright hues (yellows/greens)
+    const textColor = (hue > 40 && hue < 200) ? "#1a0533" : "#fff";
 
     preset.style.background = `linear-gradient(135deg, ${light}, ${dark})`;
     preset.style.color = textColor;
-    preset.style.boxShadow = `0 2px 8px hsla(${hslHue}, 70%, 50%, 0.35)`;
+    preset.style.boxShadow = `0 2px 8px ${shadow}`;
   });
 }
 
